@@ -1,0 +1,18 @@
+{
+  "source": "tools/golden_star.svg",
+  "ratios_note": "tube ratios are a DESIGN CHOICE anchored on the text-free reference, not a measurement of the original logo",
+  "rotation": 90.0,
+  "tip_angles": [
+    18.0,
+    90.0,
+    162.0,
+    234.0,
+    306.0
+  ],
+  "tube_ratios": {
+    "red": 1.0,
+    "white": 0.7794,
+    "blue": 0.5627
+  },
+  "regularity_max_tip_dev": 1.0
+}
