@@ -210,7 +210,11 @@ def sign_placement(scx, scy, R):
 
 
 def sign_color(scx, scy, R):
-    """Full neon sign: aura, star tubes, opaque plate, bright core, ROANOKE."""
+    """Full neon sign: aura, star tubes, opaque plate, bright core, ROANOKE.
+
+    The color lockup keeps the plain treatment: the star and aura render in
+    full, and ROANOKE carries just its regular black outer stroke (no cleared
+    radius / feather — that clarity trick is for the mono variants only)."""
     scale, tx, ty = sign_placement(scx, scy, R)
     t = f'translate({tx:.2f},{ty:.2f}) scale({scale:.5f})'
     parts = [f'<circle cx="{scx:.1f}" cy="{scy:.1f}" r="{R * 1.15:.1f}" fill="url(#starAura)"/>']
@@ -224,8 +228,6 @@ def sign_color(scx, scy, R):
                  f'<path d="{CORE_WORDMARK} {CORE_INFINITY} {DOT_TOP} {DOT_BOTTOM}" '
                  f'fill="none" stroke="{CYAN}" stroke-width="1.6"/></g></g>')
     ro_xf, ro_d = roanoke_xform(tx, ty, scale, ROANOKE_SCALE)
-    # rounded plate clears the star behind/around ROANOKE (matches the mono mask)
-    parts.append(f'<g transform="{t}">{roanoke_clear_rect(VOID)}</g>')
     parts.append(f'<g transform="{ro_xf}" filter="url(#glowMed)">'
                  f'<path d="{ro_d}" fill="{VOID}" stroke="{VOID}" '
                  f'stroke-width="{26.0 / scale:.2f}" stroke-linejoin="round"/></g>')
